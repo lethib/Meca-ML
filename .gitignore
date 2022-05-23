@@ -7,8 +7,7 @@ avg_yy_strain-vs-separation/__pycache__/*
 avg_yy_strain-vs-separation/results/*
 **/.DS_Store
 **/dump.*
-
-
+**/sorted.*
 
 # C extensions
 *.so
