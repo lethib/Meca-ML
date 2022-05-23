@@ -31,10 +31,3 @@ def get_fy_and_id_atoms(atoms_array):
         fy.append(float(atoms_array[i][6]))
         id_atoms.append(int(atoms_array[i][0]))
     return fy, id_atoms
-
-# start_line = go_to_timestep(r'fy-vs-i_atoms/dump.test', 1)
-# print(start_line)
-# atoms = extract_atoms_info(r'fy-vs-i_atoms/dump.test',start_line)
-# print(atoms)
-# fy, id_atoms = get_fy_and_id_atoms(atoms)
-# print(fy, id_atoms)

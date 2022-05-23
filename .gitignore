@@ -10,6 +10,7 @@ avg_yy_strain-vs-separation/results/*
 **/.DS_Store
 **/dump.*
 **/sorted.*
+**/*.txt
 
 # C extensions
 *.so
