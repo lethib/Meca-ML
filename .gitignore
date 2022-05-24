@@ -11,6 +11,7 @@ avg_yy_strain-vs-separation/results/*
 **/dump.*
 **/sorted.*
 **/*.txt
+**/log.*
 
 # C extensions
 *.so
