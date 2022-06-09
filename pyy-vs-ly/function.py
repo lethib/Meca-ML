@@ -43,7 +43,17 @@ def get_l0(atoms_array):
 def young_module(list_pyy, list_ly, l0):
     """Returns the value of the Young Module"""
     young = []
-    for i in range(len(list_pyy)):
+    eps = []
+    delta_eps = []
+    delta_pyy = []
+    for i in range(len(list_ly)):
         eps_i = list_ly[i]/l0
-        temp = list_pyy[i]/eps_i
-        young.append(temp)
+        eps.append(eps_i)
+
+    for j in range(70,len(eps)-1):
+        delta_eps.append(eps[j+1] - eps[j])
+        delta_pyy.append(list_pyy[j+1] - list_pyy[j])
+    
+    for k in range(len(delta_eps)):
+        young.append(delta_pyy[k]/delta_eps[k])
+    return np.mean(young), eps, len(list_pyy)
