@@ -10,8 +10,11 @@ for file in filenames:
     info = extract_atoms_info(file)
     pyy, ly = get_pyy_ly(info)
     if file == 'log.lammps':
-        plt.scatter(ly, pyy)
-        plt.plot(ly,pyy, label= '0,0 bin')
+        young, eps, len = young_module(pyy, ly, get_l0(info))        
+        plt.scatter(eps, pyy)
+        plt.plot(eps,pyy, label= '0,0 bin')
+        print(young)
+        print(len)
     else :
         plt.scatter(ly, pyy)
         plt.plot(ly,pyy, label= '0,' + file[13] + ' bin')
