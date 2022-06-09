@@ -35,3 +35,15 @@ def get_pyy_ly(atoms_array):
         pyy.append(-float(atoms_array[i][2]))
         ly.append(float(atoms_array[i][4]))
     return pyy, ly
+
+def get_l0(atoms_array):
+    """Returns the value of l0"""
+    return float(atoms_array[0][4])
+
+def young_module(list_pyy, list_ly, l0):
+    """Returns the value of the Young Module"""
+    young = []
+    for i in range(len(list_pyy)):
+        eps_i = list_ly[i]/l0
+        temp = list_pyy[i]/eps_i
+        young.append(temp)
