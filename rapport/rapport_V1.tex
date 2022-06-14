@@ -53,14 +53,14 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 %----------------------------------%
 
 %-----Redéfinition des noms des parties-----%
-\renewcommand{\contentsname}{Sommaire}
-\renewcommand{\tablename}{Tableau}
-\renewcommand{\chaptername}{Chapitre}
-\renewcommand\listfigurename{Liste des Figures}
-\renewcommand\listtablename{Liste des Tableaux}
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\tablename}{Table}
+\renewcommand{\chaptername}{Chapter}
+\renewcommand\listfigurename{List of Figures}
+\renewcommand\listtablename{Liste of Tables}
 \renewcommand{\appendixtocname}{Annexes}
 \renewcommand{\appendixpagename}{Annexes}
-\renewcommand{\bibname}{Bibliographie}
+\renewcommand{\bibname}{Bibliography}
 %-------------------------------------------%
 
 %-----Création nouveau type de colonne-----%
@@ -118,19 +118,19 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
         
         \vspace*{\stretch{1}}
         
-        \textsc{\LARGE Dialogue entre dynamique moléculaire et milieux continu: définition d'un modèle cohésif fondé sur des informations à l'échelle atomique}
+        \textsc{\LARGE Dialogue between molecular dynamics and continuous media: definition of a cohesive model based on atomic scale information}
 
         \bigskip
         \bigskip
         \bigskip
         
         \hrule height 2px \bigskip
-        { \huge \bfseries - RAPPORT DE STAGE 2A - \\[0.4cm] }
+        { \huge \bfseries - 2nd YEAR INTERNSHIP REPORT - \\[0.4cm] }
         
         \hrule height 2px 
 
         \bigskip
-        {\large Année universitaire 2021-2022} \\[0.7cm] 
+        {\large Academic Year 2021-2022} \\[0.7cm] 
         
         \begin{figure}[!h]
             \centering
@@ -140,7 +140,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
         
         \begin{minipage}[d]{1\linewidth}
             \begin{flushright} \large
-            \textbf{Maître de Stage}\\
+            \textbf{INTERNSHIP SUPERVISOR}\\
                 \textbf{Noel JAKSE}\\
                 0102030405\\
                 noel.jakse@grenoble-inp.org
@@ -152,7 +152,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
         \begin{minipage}[d]{1\linewidth}
               \begin{flushleft} \large
               \textbf{Thibault MROZ}\\
-                \textbf{2A - SIM}\\
+                \textbf{2nd Year - SIM}\\
               \end{flushleft}
          \end{minipage}
           \end{center}        
@@ -174,18 +174,16 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
     %\addcontentsline{toc}{chapter}{Glossaire}%
 
 	\listoffigures
-	\addcontentsline{toc}{chapter}{Liste des Figures}
+	\addcontentsline{toc}{chapter}{List of Figures}
 
     \listoftables
-    \addcontentsline{toc}{chapter}{Liste des Tableaux}
+    \addcontentsline{toc}{chapter}{Liste of Tables}
 
 \chapter{Introduction}
     \input{intro}
 
-\chapter{Gestion de Projet}
-
-
-    \section{Répartition des rôles}
+\chapter{Hardware and Methods}
+    \input{mat_and_meth.tex}
 
 
 \chapter{Mise en contexte}
