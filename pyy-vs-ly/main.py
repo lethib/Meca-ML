@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Define Variables
 # filenames = [r'log.lammps-0,8', r'log.lammps-0,6', r'log.lammps-0,4', r'log.lammps-0,2', r'log.lammps-0,1', r'log.lammps']
-filenames = [r'log.lammps_reaxff']
+filenames = [r'log.lammps_temp_0,1']
 
 # Process
 for file in filenames:

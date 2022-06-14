@@ -47,7 +47,7 @@ def young_module(list_pyy, list_ly, l0):
     delta_eps = []
     delta_pyy = []
     for i in range(len(list_ly)):
-        eps_i = list_ly[i]/l0
+        eps_i = (list_ly[i]-l0)/l0
         eps.append(eps_i)
 
     for j in range(70,len(eps)-1):
