@@ -17,11 +17,11 @@ def split_atom_info(info):
 def extract_atoms_info(log_filename):
     """Extracts all infos from the log.lammps file. Returns an array"""
     info = []
-    run_thermo = int(split_atom_info_head(linecache.getline(log_filename,85))[2])
-    run = int(split_atom_info_head(linecache.getline(log_filename,101))[2])
+    run_thermo = int(split_atom_info_head(linecache.getline(log_filename,93))[2])
+    run = int(split_atom_info_head(linecache.getline(log_filename,109))[2])
     nb_values = int(run/run_thermo)
 
-    for i in range(116, 116+nb_values+1):
+    for i in range(158, 158+nb_values+1):
         temp = split_atom_info(linecache.getline(log_filename,i))
         temp = [i for i in temp if i != '']
         info.append(temp)
