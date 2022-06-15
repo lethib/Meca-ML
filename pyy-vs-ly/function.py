@@ -33,12 +33,12 @@ def get_pyy_ly(atoms_array):
     ly = []
     for i in range(len(atoms_array)):
         pyy.append(-float(atoms_array[i][2]))
-        ly.append(float(atoms_array[i][4]))
+        ly.append(float(atoms_array[i][6]))
     return pyy, ly
 
 def get_l0(atoms_array):
     """Returns the value of l0"""
-    return float(atoms_array[0][4])
+    return float(atoms_array[0][6])
 
 def young_module(list_pyy, list_ly, l0):
     """Returns the value of the Young Module"""
