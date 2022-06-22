@@ -22,6 +22,7 @@
 \usepackage{enumerate}
 \usepackage{caption}
 \usepackage[normalem]{ulem}
+\usepackage[cache=false]{minted}
 
 %-----Couleur des liens cliquables-----%
 \definecolor{bleu marine}{HTML}{1E3F5A}
@@ -187,11 +188,6 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 \chapter{Hardware and Methods}
     \input{mat_and_meth.tex}
 
-
-\chapter{Mise en contexte}
-
-    \section{Contexte d'utilisation}
-
 \chapter*{Conclusion et Perspectives}\chaptermark{Conclusion et Perspectives}
 \addcontentsline{toc}{chapter}{Conclusion et Perspectives}
 
@@ -208,7 +204,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 
 
 \fancyhead[L]{ANNEXES}
-\fancyhead[R]{\includegraphics[scale = 0.05]{logo phelma.png}}
+\fancyhead[R]{\includegraphics[scale = 0.3]{logo phelma.png}}
 \renewcommand\footrulewidth{0.5pt}
 \fancyfoot[C]{\textbf{Page \thepage/\pageref{LastPage}}}
 \setlength{\headheight}{46pt}
@@ -221,9 +217,30 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 
 \renewcommand{\thesection}{\Alph{section})}
 
-\section{Annexe 1}
-\label{section:annexe_1}
+\section{run.oar script}
+\label{section:run_oar}
+    \begin{minted}{bash}
+        #!/bin/bash
 
+        folder=$(pwd | cut -d "/" -f 4)
+
+        #OAR -n lammps-reaxff-0,0
+        #OAR -l /nodes=1/core=32,walltime=10:00:00
+        #OAR --stdout lammps.%jobid%.out
+        #OAR --stderr pytest.%jobid%.err
+        #OAR --project pr-atosimul
+
+        # load environment
+        source /applis/site/guix-start.sh
+
+        # lancement du code
+
+        mpirun -np `cat $OAR_FILE_NODES|wc -l` lmp -in in_older.$folder-0,0.txt
+    \end{minted}
+
+\section{input.file script example}
+\label{section:input_lammps}
+    \inputminted[]{text}{/Users/thibault/Documents/Meca-ML/run_lammps_test/in.crack_V3.txt}
 \end{appendices}
 %--------------------------------------------------%
 

@@ -103,4 +103,26 @@ In this part, will be detailed all the hardware, software and methods used to ca
         
         Those two SSH gateways (called \verb|Rotule| and \verb|Trinity|) are grouped under a single DNS : \verb|access-gricad.univ-grenoble-alpes.fr|. This allows for load balancing on these two machines. Moreover, if one server came to fail, the other one is still available for computing. 
         
-        The submission work for computing is made through a \verb|run.oar| file. It is a \verb|bash| script that provides the number of nodes and cores of the processor wanted by the user, the walltime (max time of computing), the name of some output files and then commands to run external scripts. (AJOUTER SCRIPT EN ANNEXE)
+        The submission work for computing is made through a \verb|run.oar| file. It is a \verb|bash| script that provides the number of nodes and cores of the processor wanted by the user, the walltime (max time of computing), the name of some output files and then commands to run external scripts. A script is given in the \ref{section:run_oar} appendix.
+
+        Then, all the output files are stored on the cluster. To visualize them through Ovito for instance, a File Transfer Protocol Secure (FTPS) is used. 
+
+
+\section{Methods}
+
+    The aim is to make predictions about the behavior of cracks using a Machine Learning program. The algorithm will have to learn from the numerous simulations. It is therefore crucial that these input data are correct in order to limit the error on the predictions at the output of the program. So the first part of this internship is to work on the limit and initial conditions in order to have correct simulations.
+
+    \subsection{The Theory}
+
+    \subsection{The Model used}
+        To simulate the propagation of a crack in a material, the model used is based on the theory of molecular dynamics. The idea is to carry out a small-scale tensile test on a sample with the beginning of a crack on the side. LAMMPS will allow to calculate the position, the speed and the forces exerted on each atom of the box. \medskip
+        
+        Here is the model that will be used for simulations : 
+
+        \begin{center}
+            \captionsetup{type = figure}
+            \includegraphics[scale = 0.3]{model.png}
+            \captionof{figure}{Model used for simulations}
+        \end{center}
+
+        5 different regions are defined. There are 50 atoms along the x axis (horizontally) and 25 along the y axis (vertically). The dimensions of the box therefore vary according to the mesh parameter of the chosen material. During the tensile test, all regions are mobile except the 4th one. To simulate a tensile test in LAMMPS, we set the same velocity for all the mobile groups. To simulate the crack, regions 2 and 3 are not linked. An \verb|input.file| is given in the \ref{section:input_lammps} appendix.
