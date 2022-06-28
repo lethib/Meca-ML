@@ -60,7 +60,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 \renewcommand{\tablename}{Table}
 \renewcommand{\chaptername}{Chapter}
 \renewcommand\listfigurename{List of Figures}
-\renewcommand\listtablename{Liste of Tables}
+\renewcommand\listtablename{List of Tables}
 \renewcommand{\appendixtocname}{Annexes}
 \renewcommand{\appendixpagename}{Annexes}
 \renewcommand{\bibname}{Bibliography}
@@ -96,7 +96,30 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 %-------------------------------%
 
 %-----GLOSSAIRE-----%
+\makeglossaries
+\newglossaryentry{SSH}
+{
+    name = {SSH},
+    text = {SSH},
+    description = {a cryptographic network protocol for operating network services securely over an unsecured network.},
+    plural = {SSH},
+}
 
+\newglossaryentry{cohesive zone}
+{
+    name = {Cohesive Zone},
+    text = {cohesive zone},
+    description = {fracture formation is regarded as a gradual phenomenon and separation of the crack surfaces takes place across an extended crack tip, or cohesive zone, and is resisted by cohesive tractions},
+    plural = {cohesive zones},
+}
+
+\newglossaryentry{molecular dynamic}
+{
+    name = {Molecular Dynamic},
+    text = {molecular dynamic},
+    description = {a computer simulation method for analyzing the physical movements of atoms and molecules.},
+    plural = {molecular dynamics},
+}
 %--------------------%
 
 
@@ -171,10 +194,9 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
     % \chapter*{Abstract et Résumé}\chaptermark{Abstract et Résumé}
     % \addcontentsline{toc}{chapter}{Abstract et Résumé}
 
+\printglossary[title={Glossary}, toctitle={Glossary}]
 
-%\printglossary[title={Glossaire}, toctitle={Glossaire}]%
-
-    %\addcontentsline{toc}{chapter}{Glossaire}%
+    \addcontentsline{toc}{chapter}{Glossary}
 
 	\listoffigures
 	\addcontentsline{toc}{chapter}{List of Figures}
@@ -197,6 +219,10 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
     \addcontentsline{toc}{chapter}{Bibliographie}
     \bibitem[1]{1} \textbf{Article}, Secure Shell\\
     \url{https://en.wikipedia.org/wiki/Secure_Shell}
+    \bibitem[2]{2} \textbf{Book}, T.L. Anderson, \textit{Fracture Mechanics : Fundamentals and Applications}, Boca Raton, 2017
+    \bibitem[3]{3} \textbf{Article}, Kaida Dai, Baodi Lu, Pengwan Chen and Jingjing Chen, \textit{Modelling Microstructural Deformation and the Failure Process of Plastic Bonded Explosives Using the Cohesive Zone Model}, 2019\\
+    \url{https://www.mdpi.com/1996-1944/12/22/3661}
+    \bibitem[4]{4} \textbf{Book}, A.A. Griffith, \textit{The Phenomena of Rupture and Flow in Solids}, Royal Aircraft Establishment, 1920
 \end{thebibliography} 
 
 %-----ANNEXES-----%

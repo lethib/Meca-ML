@@ -13,6 +13,17 @@ avg_yy_strain-vs-separation/results/*
 **/*.txt
 **/log.*
 **/*.synctex.gz
+**.aux
+**.fdb_latexmk
+**.fls
+**.glg
+**.glo
+**.gls
+**.ist
+**.lof
+**.lot
+**.out
+**.toc
 
 # C extensions
 *.so
