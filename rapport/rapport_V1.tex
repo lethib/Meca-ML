@@ -17,7 +17,7 @@
 \usepackage{glossaries}
 \usepackage{xcolor}
 \usepackage{pgf, tikz}
-    \usetikzlibrary{arrows,shapes,positioning}
+    \usetikzlibrary{arrows,shapes,positioning,shapes.multipart}
 \usepackage[toc,page,title,header]{appendix}
 \usepackage{enumerate}
 \usepackage{caption}
@@ -119,6 +119,38 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
     text = {molecular dynamic},
     description = {a computer simulation method for analyzing the physical movements of atoms and molecules.},
     plural = {molecular dynamics},
+}
+
+\newglossaryentry{NVE}
+{
+    name = {NVE},
+    text = {NVE},
+    description = {corresponds to a microcanonical ensemble.},
+    plural = {NVE},
+}
+
+\newglossaryentry{NVT}
+{
+    name = {NVT},
+    text = {NVT},
+    description = {corresponds to a canonical ensemble.},
+    plural = {NVT},
+}
+
+\newglossaryentry{NPT}
+{
+    name = {NPT},
+    text = {NPT},
+    description = {corresponds to an isothermal-isobaric ensemble.},
+    plural = {NPT},
+}
+
+\newglossaryentry{adiabatic}
+{
+    name = {Adiabatic},
+    text = {adiabatic},
+    description = {type of thermodynamic process that happends without transferring heat or mass between systems.},
+    plural = {adiabatics},
 }
 %--------------------%
 

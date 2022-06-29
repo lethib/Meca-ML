@@ -90,8 +90,8 @@ In this part, will be detailed all the hardware, software and methods used to ca
                 \node[draw](FROGC) at (13,-2) {\verb|Froggy| Computing};
                 \draw[->,>=latex] (LOC) -- (SSH) node[midway,above]{\verb|ssh|};
                 \draw[->,>=latex] (SSH) |- (DAHU) node[midway,above,sloped]{\verb|ssh|};
-                \draw[->,>=latex] (SSH) -- (BIGF) node[midway,above,sloped]{\verb|ssh|};
-                \draw[->,>=latex] (SSH) -- (LUKE) node[midway,above,sloped]{\verb|ssh|};
+                \draw[->,>=latex] (SSH) -- (BIGF.west) node[midway,above,sloped]{\verb|ssh|};
+                \draw[->,>=latex] (SSH) -- (LUKE.west) node[midway,above,sloped]{\verb|ssh|};
                 \draw[->,>=latex] (SSH) |- (FROG) node[midway,below,sloped]{\verb|ssh|};
                 \draw[->,>=latex] (DAHU) -- (DAHUC) node[midway,above]{\verb|oar|};
                 \draw[->,>=latex] (BIGF) -- (BIGFC) node[midway,above]{\verb|oar|};
@@ -205,8 +205,55 @@ In this part, will be detailed all the hardware, software and methods used to ca
             That is how we calculate fracture propagation in materials according to fracture mechanics. But, we cannot really go deeper in the virtual crack zone and understand all the atomic interactions in the \gls{cohesive zone}. To have a better understanding of potentials and crack propgation, we need to look closer and use \gls{molecular dynamic}.
         
         \subsubsection{Molecular Dynamics}
-        
-            However, there is a lot of potential that exists. The \gls{molecular dynamic} will resolve Newton's Motion Law thanks to these potentials. 
+            
+            \Glspl{molecular dynamic} is a numerical method that resolver Newton's equation of motion $\vec{F} = \frac{d}{dt}(m\vec{v})$ for system of interacting. As the atoms are allowed to interact thanks to interatomic potentials for a fixed period of time, it gives the dynamic evolution of the system. \medskip
+
+            Here is a simplified schema of a \gls{molecular dynamic} progam (such as LAMMPS) : 
+
+            \begin{center}
+                \captionsetup{type=figure}
+                \begin{tikzpicture}
+                    \node[draw](A) at (0,0) {Set atoms initial position and velocity + set timestep $\Delta t$};
+                    \node[draw](B) at (0,-1) {Predict nex atom positions : Move atoms and Update velocities};
+                    \node[draw](C) at (0,-2) {Get forces based on potential $\vec{F} = \nabla\vec{u}$};
+                    \node[draw](D) at (0,-3) {Adjust atom positions};
+                    \node[draw](E) at (0,-4) {Apply boundary, pressure and temperature conditions};
+                    \node[draw](F) at (0,-5) {Compute and output selected physical quantities};
+                    \node[draw](G) at (0,-6) {Implement time and interation : $t = t + \Delta t$, $i = i + 1$.};
+                    \node[draw](H) at (0,-7) {Repeat the process as long as needed};
+                    \coordinate[shift={(-2.6cm,0)}] (n) at (H.west);
+                    \coordinate[shift={(-4mm,0)}] (m) at (B.west);
+                    \draw[->,>=latex] (A) -- (B);
+                    \draw[->,>=latex] (B) -- (C);
+                    \draw[->,>=latex] (C) -- (D);
+                    \draw[->,>=latex] (D) -- (E);
+                    \draw[->,>=latex] (E) -- (F);
+                    \draw[->,>=latex] (F) -- (G);
+                    \draw[->,>=latex] (G) -- (H);
+                    \draw[->,>=latex] (H) -- (n) -- (m) -- (B);
+                \end{tikzpicture}
+                \captionof{figure}{Simplified schema of a molecular dynamic program}
+            \end{center}
+
+            The engineering of a \gls{molecular dynamic} algorithm should account for the available computational power of the machine. That is why parameters such as timestep, simulation box size, number of atoms, potential\dots are wisely choose to have a correct computational time. Thoose simualtions requires sometimes high computational power to output some results. That is why a calculating computer is used during this internship. The type of system is also an important parameter to take into consideration. Only microcanonical (\gls{NVE}), canonical (\gls{NVT}) and isothermal-isobaric (\gls{NPT}) ensembles are used for simulations. 
+
+            In the microcanonical ensemble, the system is totally isolated from changes in moles (N), volumes (V) and energy (E). It is linked with an \gls{adiabatic} process without heat exchange. 
+
+            In the canonical ensemble, the amount of atoms (N), volume (V) and temperature (T) are conserved. In a \gls{NVT} system, the energy is exchanged with a thermostat. There are several thermostat algorithm and methods. 
+
+            In the isothermal-isobaric ensemble, the amount of atoms (N), pressure (P) and temperature (T) are conserved. Compared to the \gls{NVT} ensemble, a barostat is needed in addition to a thermostat. This ensemble is getting closer to laboratory conditions. \medskip
+
+            In addition to the choice of the type of system to run a simulation, \glspl{molecular dynamic} require a potential function which is a mathematical description of particles interaction. There are plenty of potentials that can be defined at many levels of physical accuracy. It exists pair potential functions in which the total potential energy can be calculated from the sum of all interatomic pairs energy. An example of such potential is the Lennard-Jones potential: 
+
+            $$
+            U(r) = 4\epsilon \left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6\right]
+            $$
+            \smallskip
+
+            A more precise one is the Stillinger-Weber one. It has been designed for Silicone. The mathematical is complicated and without interest for the internship. It is composed of two terms: a two-body term (which corresponds to the interaction energy between two neighboring atoms) and a three-body term (specifically added to energetically promote the tetrahedral environment of the atoms).
+
+            However, empirical potentials (often called force fields) are frequently used in material physics. Force fields potentials consist of a summation of bonded forces associated with chemical bonds, electrostatic charges and Van der Waals interactions. These potentials contain a huge amount of free parameters (atomic charge and radius, bond length and angles\dots) that makes calibration complicated. Its calculation is the bottleneck in the speed of \gls{molecular dynamic} simulations. But, they are more precise than pair potential functions. An example of such potential is the ReaxFF potential. 
+
 
     \subsection{The Model used}
         To simulate the propagation of a crack in a material, the model used is based on the theory of molecular dynamics. The idea is to carry out a small-scale tensile test on a sample with the beginning of a crack on the side. LAMMPS will allow to calculate the position, the speed and the forces exerted on each atom of the box. \medskip
