@@ -17,11 +17,11 @@ def split_atom_info(info):
 def extract_atoms_info(log_filename):
     """Extracts all infos from the log.lammps file. Returns an array"""
     info = []
-    run_thermo = int(split_atom_info_head(linecache.getline(log_filename,93))[2])
-    run = int(split_atom_info_head(linecache.getline(log_filename,109))[2])
+    run_thermo = int(split_atom_info_head(linecache.getline(log_filename,211))[2])
+    run = int(split_atom_info_head(linecache.getline(log_filename,227))[2])
     nb_values = int(run/run_thermo)
 
-    for i in range(158, 158+nb_values+1):
+    for i in range(230, 230+nb_values+1):
         temp = split_atom_info(linecache.getline(log_filename,i))
         temp = [i for i in temp if i != '']
         info.append(temp)
@@ -33,12 +33,12 @@ def get_pyy_ly(atoms_array):
     ly = []
     for i in range(len(atoms_array)):
         pyy.append(-float(atoms_array[i][2]))
-        ly.append(float(atoms_array[i][6]))
+        ly.append(float(atoms_array[i][9]))
     return pyy, ly
 
 def get_l0(atoms_array):
     """Returns the value of l0"""
-    return float(atoms_array[0][6])
+    return float(atoms_array[0][9])
 
 def young_module(list_pyy, list_ly, l0):
     """Returns the value of the Young Module"""

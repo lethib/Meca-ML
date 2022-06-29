@@ -17,11 +17,12 @@
 \usepackage{glossaries}
 \usepackage{xcolor}
 \usepackage{pgf, tikz}
-    \usetikzlibrary{arrows,shapes,positioning}
+    \usetikzlibrary{arrows,shapes,positioning,shapes.multipart}
 \usepackage[toc,page,title,header]{appendix}
 \usepackage{enumerate}
 \usepackage{caption}
 \usepackage[normalem]{ulem}
+\usepackage[cache=false]{minted}
 
 %-----Couleur des liens cliquables-----%
 \definecolor{bleu marine}{HTML}{1E3F5A}
@@ -59,7 +60,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 \renewcommand{\tablename}{Table}
 \renewcommand{\chaptername}{Chapter}
 \renewcommand\listfigurename{List of Figures}
-\renewcommand\listtablename{Liste of Tables}
+\renewcommand\listtablename{List of Tables}
 \renewcommand{\appendixtocname}{Annexes}
 \renewcommand{\appendixpagename}{Annexes}
 \renewcommand{\bibname}{Bibliography}
@@ -95,7 +96,62 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 %-------------------------------%
 
 %-----GLOSSAIRE-----%
+\makeglossaries
+\newglossaryentry{SSH}
+{
+    name = {SSH},
+    text = {SSH},
+    description = {a cryptographic network protocol for operating network services securely over an unsecured network.},
+    plural = {SSH},
+}
 
+\newglossaryentry{cohesive zone}
+{
+    name = {Cohesive Zone},
+    text = {cohesive zone},
+    description = {fracture formation is regarded as a gradual phenomenon and separation of the crack surfaces takes place across an extended crack tip, or cohesive zone, and is resisted by cohesive tractions},
+    plural = {cohesive zones},
+}
+
+\newglossaryentry{molecular dynamic}
+{
+    name = {Molecular Dynamic},
+    text = {molecular dynamic},
+    description = {a computer simulation method for analyzing the physical movements of atoms and molecules.},
+    plural = {molecular dynamics},
+}
+
+\newglossaryentry{NVE}
+{
+    name = {NVE},
+    text = {NVE},
+    description = {corresponds to a microcanonical ensemble.},
+    plural = {NVE},
+}
+
+\newglossaryentry{NVT}
+{
+    name = {NVT},
+    text = {NVT},
+    description = {corresponds to a canonical ensemble.},
+    plural = {NVT},
+}
+
+\newglossaryentry{NPT}
+{
+    name = {NPT},
+    text = {NPT},
+    description = {corresponds to an isothermal-isobaric ensemble.},
+    plural = {NPT},
+}
+
+\newglossaryentry{adiabatic}
+{
+    name = {Adiabatic},
+    text = {adiabatic},
+    description = {type of thermodynamic process that happends without transferring heat or mass between systems.},
+    plural = {adiabatics},
+}
 %--------------------%
 
 
@@ -170,10 +226,9 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
     % \chapter*{Abstract et Résumé}\chaptermark{Abstract et Résumé}
     % \addcontentsline{toc}{chapter}{Abstract et Résumé}
 
+\printglossary[title={Glossary}, toctitle={Glossary}]
 
-%\printglossary[title={Glossaire}, toctitle={Glossaire}]%
-
-    %\addcontentsline{toc}{chapter}{Glossaire}%
+    \addcontentsline{toc}{chapter}{Glossary}
 
 	\listoffigures
 	\addcontentsline{toc}{chapter}{List of Figures}
@@ -187,20 +242,6 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 \chapter{Hardware and Methods}
     \input{mat_and_meth.tex}
 
-
-\chapter{Mise en contexte}
-
-    \section{Contexte d'utilisation}
-
-
-\chapter[Étude d'hydroliennes en milieu artificiel]{Étude des caractéristiques des prototypes d'hydroliennes en milieu artificiel}
-
-    \section{Conception et réalisation du système expérimental}
-
-\chapter[Implantation des hydroliennes sur Grenoble]{Étude du potentiel d'implantation des hydroliennes sur Grenoble}
-
-
-
 \chapter*{Conclusion et Perspectives}\chaptermark{Conclusion et Perspectives}
 \addcontentsline{toc}{chapter}{Conclusion et Perspectives}
 
@@ -208,6 +249,12 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 \begin{thebibliography}{9}%Voir sur internet pour le 0 
 %Revoir biblio%
     \addcontentsline{toc}{chapter}{Bibliographie}
+    \bibitem[1]{1} \textbf{Article}, Secure Shell\\
+    \url{https://en.wikipedia.org/wiki/Secure_Shell}
+    \bibitem[2]{2} \textbf{Book}, T.L. Anderson, \textit{Fracture Mechanics : Fundamentals and Applications}, Boca Raton, 2017
+    \bibitem[3]{3} \textbf{Article}, Kaida Dai, Baodi Lu, Pengwan Chen and Jingjing Chen, \textit{Modelling Microstructural Deformation and the Failure Process of Plastic Bonded Explosives Using the Cohesive Zone Model}, 2019\\
+    \url{https://www.mdpi.com/1996-1944/12/22/3661}
+    \bibitem[4]{4} \textbf{Book}, A.A. Griffith, \textit{The Phenomena of Rupture and Flow in Solids}, Royal Aircraft Establishment, 1920
 \end{thebibliography} 
 
 %-----ANNEXES-----%
@@ -215,7 +262,7 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 
 
 \fancyhead[L]{ANNEXES}
-\fancyhead[R]{\includegraphics[scale = 0.05]{logo phelma.png}}
+\fancyhead[R]{\includegraphics[scale = 0.3]{logo phelma.png}}
 \renewcommand\footrulewidth{0.5pt}
 \fancyfoot[C]{\textbf{Page \thepage/\pageref{LastPage}}}
 \setlength{\headheight}{46pt}
@@ -228,9 +275,30 @@ format=hang,labelformat=test,textformat=test,labelseparator=test, labelfont = gr
 
 \renewcommand{\thesection}{\Alph{section})}
 
-\section{Annexe 1}
-\label{section:annexe_1}
+\section{run.oar script}
+\label{section:run_oar}
+    \begin{minted}{bash}
+        #!/bin/bash
 
+        folder=$(pwd | cut -d "/" -f 4)
+
+        #OAR -n lammps-reaxff-0,0
+        #OAR -l /nodes=1/core=32,walltime=10:00:00
+        #OAR --stdout lammps.%jobid%.out
+        #OAR --stderr pytest.%jobid%.err
+        #OAR --project pr-atosimul
+
+        # load environment
+        source /applis/site/guix-start.sh
+
+        # lancement du code
+
+        mpirun -np `cat $OAR_FILE_NODES|wc -l` lmp -in in_older.$folder-0,0.txt
+    \end{minted}
+
+\section{input.file script example}
+\label{section:input_lammps}
+    \inputminted[]{text}{/Users/thibault/Documents/Meca-ML/run_lammps_test/in.crack_V3.txt}
 \end{appendices}
 %--------------------------------------------------%
 
