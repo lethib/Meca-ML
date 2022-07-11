@@ -8,6 +8,7 @@ __pycache__/
 avg_yy_strain-vs-separation/__pycache__/*
 avg_yy_strain-vs-separation/results/*
 **/rapport/
+**/draft/
 **/.DS_Store
 **/dump.*
 **/sorted.*
