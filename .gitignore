@@ -7,6 +7,7 @@ __pycache__/
 **/run_lammps_test/
 avg_yy_strain-vs-separation/__pycache__/*
 avg_yy_strain-vs-separation/results/*
+**/rapport/
 **/.DS_Store
 **/dump.*
 **/sorted.*
