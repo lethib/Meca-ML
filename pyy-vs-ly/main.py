@@ -24,5 +24,5 @@ for file in filenames:
 # Plot
 plt.ylabel('pyy')
 plt.legend(loc='best')
-plt.title('pyy vs ly')
+plt.title('pyy vs eps_y')
 plt.show()
