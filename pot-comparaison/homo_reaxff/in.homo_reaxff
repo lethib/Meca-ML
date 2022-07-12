@@ -1,0 +1,53 @@
+# 2d LJ crack simulation
+
+units		metal
+dimension	3
+boundary	p p p
+
+atom_style	charge
+neighbor	0.0 bin
+neigh_modify	delay 10
+
+# create geometry - 512 atoms
+
+lattice	diamond 5.50
+region		box block 0.0 4.0 0.0 4.0 -2.0 2.0
+create_box	1 box
+create_atoms	1 box
+
+mass		1 28.0
+
+
+# ReaxFF for silicon
+
+pair_style	reax/c lmp_control
+pair_coeff	* * ffield.reax.Si Si
+#pair_modify	shift yes
+
+
+# define groups
+
+group all static
+
+
+# Run Relax
+
+# initial velocities
+compute		new all temp
+velocity	all create 300 887723 temp new mom yes rot yes
+
+# fix
+fix		reax all qeq/reax 1 0.0 10.0 1e-6 param.qeq
+
+# run - NE PAS TOUCHER AU TIMESTEP
+
+timestep		0.001
+thermo		100
+thermo_style	custom step temp pyy pxx pzz pxy pxz pyz lx ly lz
+thermo_modify	temp new
+
+#neigh_modify	exclude type 2 3
+
+dump		1 all custom 100 dump.homo-reax id type q x y z fx fy fz
+
+minimize        1.0e-8 1.0e-12 1000 10000

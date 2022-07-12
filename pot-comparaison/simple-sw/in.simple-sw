@@ -1,0 +1,46 @@
+# Simple SW Relax
+
+units       metal
+dimension	3
+boundary	p p p
+
+atom_style	charge
+neighbor	0.0 bin
+neigh_modify	delay 10
+
+# create geometry - 512 atoms
+
+lattice		diamond 5.60
+region		box block 0.0 4.0 0.0 4.0 -2.0 2.0
+create_box	1 box
+create_atoms	1 box
+
+mass		1 28.0
+
+
+# SW potentials
+
+pair_style	sw
+pair_coeff	* * si.sw Si
+
+# define groups
+
+group all static
+
+# initial velocities
+
+compute	  	new all temp
+velocity	all create 300 887723 temp new mom yes rot yes
+
+# run - NE PAS TOUCHER AU TIMESTEP
+
+timestep		0.001
+thermo		100
+thermo_style	custom step temp pyy pxx pzz pxy pxz pyz lx ly lz
+thermo_modify	temp new
+
+#neigh_modify	exclude type 2 3
+
+dump		1 all custom 100 dump.simple-sw id type q x y z fx fy fz
+
+minimize        1.0e-8 1.0e-12 1000 10000
