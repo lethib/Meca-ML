@@ -10,7 +10,7 @@ neigh_modify	delay 10
 
 # create geometry - 512 atoms
 
-lattice	diamond 5.50
+lattice	diamond 5.473
 region		box block 0.0 4.0 0.0 4.0 -2.0 2.0
 create_box	1 box
 create_atoms	1 box
