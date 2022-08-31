@@ -24,4 +24,4 @@ If thoose steps still provides good results, the next step is to create a **data
 
 ## GitLab repository explanation
 
-All the explanations on the GitLab repository are provided in the [wiki of the project](https://gitlab.ensimag.fr/mrozt/meca-ml/-/wikis/home)
+All the explanations on the GitLab repository are provided in the [wiki of the project](https://github.com/lethib/Meca-ML/wiki)
